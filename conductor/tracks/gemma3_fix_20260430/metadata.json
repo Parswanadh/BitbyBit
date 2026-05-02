@@ -1,0 +1,8 @@
+{
+  "track_id": "gemma3_fix_20260430",
+  "type": "bug",
+  "status": "in_progress",
+  "created_at": "2026-04-30T10:40:00Z",
+  "updated_at": "2026-04-30T10:40:00Z",
+  "description": "Fix Gemma-3 Q8.8 Extraction Script"
+}

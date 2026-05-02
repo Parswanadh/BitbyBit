@@ -1,0 +1,8 @@
+{
+  "track_id": "gemma3_compute_20260430",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-30T23:58:00Z",
+  "updated_at": "2026-04-30T23:58:00Z",
+  "description": "Gemma-3 SOTA Compute Blocks"
+}

@@ -1,0 +1,171 @@
+$date
+	Sat May 02 12:47:29 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module bank_arbiter_tb $end
+$var parameter 32 ! NUM_BANKS $end
+$var parameter 32 " NUM_UNITS $end
+$var reg 1 # clk $end
+$var reg 1 $ rst_n $end
+$var integer 32 % b [31:0] $end
+$var integer 32 & u [31:0] $end
+$scope module dut $end
+$var wire 1 # clk $end
+$var wire 1 $ rst_n $end
+$var parameter 32 ' NUM_BANKS $end
+$var parameter 32 ( NUM_UNITS $end
+$var integer 32 ) b [31:0] $end
+$var integer 32 * i [31:0] $end
+$var integer 32 + u [31:0] $end
+$upscope $end
+$scope begin $unm_blk_14 $end
+$var integer 32 , granted_count [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b10000 (
+b10000000 '
+b10000 "
+b10000000 !
+$end
+#0
+$dumpvars
+bx ,
+bx +
+bx *
+b10000000 )
+bx &
+b10000000 %
+0$
+0#
+$end
+#5000
+b10000000 )
+1#
+#10000
+0#
+#15000
+b10000000 )
+1#
+#20000
+0#
+1$
+#25000
+b10000000 )
+b10000 &
+b0 ,
+1#
+#30000
+0#
+b10000 &
+#35000
+b0 +
+b10001 *
+b10000000 )
+b10000 &
+1#
+#40000
+0#
+#45000
+b1 +
+b10001 *
+b10000000 )
+b1 ,
+b10000 &
+1#
+#50000
+0#
+#55000
+b10 +
+b10001 *
+b10000000 )
+b10000 &
+b1 ,
+1#
+#60000
+0#
+#65000
+b11 +
+b10001 *
+b10000000 )
+b10000 &
+b1 ,
+1#
+#70000
+0#
+#75000
+b100 +
+b10001 *
+b10000000 )
+b10000 &
+b1 ,
+1#
+#80000
+0#
+#85000
+b101 +
+b10001 *
+b10000000 )
+b10000 &
+b1 ,
+1#
+#90000
+0#
+#95000
+b110 +
+b10001 *
+b10000000 )
+b10000 &
+b1 ,
+1#
+#100000
+0#
+#105000
+b111 +
+b10001 *
+b10000000 )
+b10000 &
+b1 ,
+1#
+#110000
+0#
+#115000
+b1000 +
+b10001 *
+b10000000 )
+b10000 &
+b1 ,
+1#
+#120000
+0#
+#125000
+b1001 +
+b10001 *
+b10000000 )
+b10000 &
+b1 ,
+1#
+#130000
+0#
+b10000 &
+#135000
+b10000000 )
+b10000 &
+b1 ,
+1#
+#140000
+0#
+#145000
+b10000000 )
+b10000 &
+b0 ,
+1#
+#150000
+0#

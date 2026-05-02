@@ -1,0 +1,70 @@
+$date
+	Fri May 01 05:09:01 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module ternary_unpacker_tb $end
+$var wire 16 ! unpacked_weights [15:0] $end
+$var reg 1 " clk $end
+$var reg 2 # expected_weight [1:0] $end
+$var reg 1 $ failed $end
+$var reg 16 % packed_word [15:0] $end
+$var integer 32 & i [31:0] $end
+$scope module uut $end
+$var wire 16 ' packed_word [15:0] $end
+$var wire 16 ( unpacked_weights [15:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b0 (
+b0 '
+bx &
+b0 %
+0$
+bx #
+0"
+b0 !
+$end
+#5000
+1"
+#10000
+0"
+#15000
+1"
+#20000
+0"
+#25000
+1"
+#30000
+b1001100110011001 !
+b1001100110011001 (
+b1001100110011001 %
+b1001100110011001 '
+0"
+#35000
+1"
+#40000
+0"
+#45000
+1"
+#50000
+b1110010011100100 !
+b1110010011100100 (
+b1110010011100100 %
+b1110010011100100 '
+0"
+#55000
+1"
+#60000
+b11 #
+b1000 &
+0"
