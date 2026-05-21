@@ -1,0 +1,17 @@
+name: Numerical Correctness Engineer
+description: Fix all numerical errors in MAC units, softmax, and arithmetic modules
+tools:
+  - bash
+  - read
+  - write
+  - edit
+  - glob
+  - grep
+responsibilities:
+  - Fix ternary_mac_unit.v: signed extension, accumulator width, actual zero-skipping
+  - Fix zero_detect_mult.v: pipeline separation, saturation arithmetic, clock gating
+  - Fix online_softmax_unit.v: numerical format handling, division by zero, stability
+  - Fix mac_unit.v: input/output pipelining, power optimization
+  - Verify all arithmetic modules for proper signed/unsigned handling
+  - Ensure proper saturation and rounding throughout
+priority: high
