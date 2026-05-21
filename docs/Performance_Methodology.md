@@ -206,13 +206,14 @@ Performance data should be reported in tables with the following structure:
 
 | Metric | Value | Conditions | Validation Notes |
 |--------|-------|------------|------------------|
-| Imprint Latency | 112 cycles | @100MHz, GPT-2 Small, seq_len=128 | Consistent with pipe depth analysis |
-| Dynamic Latency | 341 cycles | 12-layer, 128 tokens @100MHz | Verified via cycle-accurate sim |
-| Avg Cycles/Token | 130.0 | Steady-state, GPT-2 Small | Throughput = 100MHz/130.0 = 769K tokens/sec |
-| Throughput | 2.67M tokens/sec | @100MHz, extrapolated | Requires 37.4x clock scaling to 3.74GHz |
-| Speedup vs Cortex-M4 | 38.5x | Same model, float32 baseline | Baseline @50MHz estimated 69K tokens/sec |
+| Imprint full-model latency | 112 cycles/token | @100MHz, mini imprint TB | Throughput = 100e6/112 = **892,857 tok/s** |
+| Base full-model latency | 358 cycles/token | @100MHz, mini base TB | Throughput = 100e6/358 = **279,329 tok/s** |
+| Imprint speedup vs base | 3.196× | Same TB family | 358/112; matrix workload mean |
+| MEDUSA effective throughput | 2,678,571 tok/s | 3 draft heads × imprint | **Not** single-path sustained IPC |
+| GPT-2 steady-state (legacy doc) | 130.0 cy/token | Different measurement | 769,230 tok/s @ 100MHz — do not mix with imprint |
+| Dynamic Latency (128 tok) | 341 cycles total | Pipeline window metric | ~21.9 cy/token average over sequence |
 
-Note: The above example shows inconsistencies that would need to be resolved (2.67M tokens/sec at 100MHz requires only 37.5 cycles/token, not 130.0).
+**Reconciled rule:** `throughput = clock_hz / cycles_per_token`. The old **2.67M tok/s @ 100MHz** headline equals **MEDUSA effective** on the imprint path (3 × 892,857), not 130 cycles/token.
 
 ## Verification of Performance Claims
 
@@ -248,28 +249,19 @@ All performance claims should be accompanied by:
 
 ## Known Issues and Open Questions
 
-### Current Inconsistencies in Documentation
-Review of existing documentation reveals several mathematical inconsistencies that must be resolved:
+### Resolved Documentation Mapping (2026-05-22)
 
-1. **README.md Claims**:
-   - Imprint Latency: 112 cycles
-   - Dynamic Latency: 341 cycles (12-layer inference)
-   - Average Cycles/Token: 130.0
-   - Throughput: 2.67M Tokens/sec @ 100MHz
-   - Speedup vs ARM Cortex-M4: 38.5x
+| Claim source | Meaning | @ 100 MHz |
+|--------------|---------|-----------|
+| 112 cycles | Imprint **full mini-model** cycles/token | 892,857 tok/s |
+| 358 cycles | Base **full mini-model** cycles/token | 279,329 tok/s |
+| 2.67M tok/s | **MEDUSA effective** (3× imprint) | 2,678,571 tok/s — label as speculative |
+| 130 cycles/token | Legacy GPT-2 **steady-state** doc metric | 769,230 tok/s — separate from imprint TB |
+| 341 cycles / 128 tokens | Dynamic latency over sequence | ~21.9 cy/token (different window) |
 
-   **Inconsistency Analysis**:
-   - At 100MHz, 130.0 cycles/token = 769,230 tokens/sec (not 2.67M)
-   - To achieve 2.67M tokens/sec @ 100MHz requires 37.5 cycles/token
-   - 341 cycles for 12-layer, 128-token inference = 21.9 cycles/token average
-   - 112-cycle imprint latency suggests ~9-stage pipeline (reasonable)
-   - Speedup claim of 38.5x vs Cortex-M4 needs baseline clarification
-
-2. **Required Resolution**:
-   - Either adjust clock frequency assumption for throughput claim
-   - Or adjust cycles/token and latency numbers to be consistent
-   - Clarify whether throughput claim assumes frequency scaling
-   - Document baseline Cortex-M4 frequency and implementation details
+Authoritative sim evidence: `custom_gpu_project/sim/phase3_benchmark_proof_pack.json`.  
+Derivation code: `custom_gpu_project/scripts/perf_metrics.py`.  
+Claims report: `custom_gpu_project/docs/PERFORMANCE_CLAIMS_REPORT.md`.
 
 ### Measurement Challenges
 1. **First-Token Effects**: Imprint latency measurements must exclude pipeline fill
